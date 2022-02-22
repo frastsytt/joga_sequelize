@@ -16,10 +16,11 @@ sequelize
 		console.error('Unable to connect', err);
 	});
 
-
+const authorRouter = require('./routes/author')
 const articleRouter = require('./routes/article');
 app.use('/', articleRouter);
 app.use('/article', articleRouter);
+app.use('/author', authorRouter);
 
 
 app.listen(3000, () => {

@@ -11,9 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Authors, {
+        foreignKey: {
+          name: 'AuthorId',
+          field: 'author_id',
+        }
+      })
     }
   }
-
   Article.init({
     id: {
       type: DataTypes.INTEGER,
@@ -32,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING,
-        allowNull: false
+      allowNull: false
     },
     body: {
       type: DataTypes.TEXT,
@@ -42,15 +47,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     },
-    author_id: DataTypes.INTEGER
+    author_id: {
+      type: DataTypes.INTEGER
+    },
   }, {
     sequelize,
     modelName: 'Article',
   });
-
-Article.associate = function (models) {
-  Article.hasOne(models.Author)
-}
 
   return Article;
 };
