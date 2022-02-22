@@ -31,7 +31,33 @@ const createArticle = (req, res) => {
 	})
 }
 
+
+const updateArticle = (req, res) => {
+	let name = req.query.name
+	let slug = req.query.slug
+	let image = req.query.image
+	let body = req.query.body
+
+	models.Article.update({
+		name: name,
+		slug: slug,
+		image: image,
+		body: body,
+	},
+	{where: {id: req.params.id}})
+	.then(article => {
+		console.log(article)
+		return res.status(200).json({ message: 'Article updated!'});
+	})
+	.catch (error => {
+		return res.status(500).send(error.message);
+	})
+}
+
+
+
 // export controller functions
 module.exports = {
-	createArticle
+	createArticle,
+	updateArticle
 }
