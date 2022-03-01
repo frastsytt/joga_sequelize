@@ -22,6 +22,10 @@ app.use('/', articleRouter);
 app.use('/article', articleRouter);
 app.use('/author', authorRouter);
 
+const apiRouter = require('./routes/api');
+app.use('/api', apiRouter)
+
+
 
 app.listen(3000, () => {
 	console.log('Server is running on port 3000');
