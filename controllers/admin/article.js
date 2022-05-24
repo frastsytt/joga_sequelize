@@ -8,12 +8,18 @@ const models = require('../../models')
 
 // create new
 const createArticle = (req, res) => {
-	let name = req.query.name
-	let slug = req.query.slug
-	let image = req.query.image
-	let body = req.query.body
+	let name = req.body.name
+	let slug = req.body.slug
+	let image = req.body.image
+	let body = req.body.body
+	console.log(req.body)
+	console.log(name)
+	console.log(slug)
+	console.log(image)
+	console.log(body)
 
-	console.log(req.query)
+
+
 
 	const newArticle = models.Article.create({
 		name: name,
